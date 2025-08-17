@@ -1,0 +1,4 @@
+# requirements.txt
+runpod
+boto3
+faster-whisper
