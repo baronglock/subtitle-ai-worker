@@ -137,11 +137,12 @@ def get_quality_description(model):
         'base': 'Good quality - Balanced speed',
         'small': 'High quality - Slower processing',
         'medium': 'Premium quality - Professional results',
-        'large': 'Maximum quality - Studio grade'
+        'large': 'Maximum quality - Studio grade',
+        'large-v2': 'Ultra HD quality - GPU accelerated, fastest & most accurate'
     }
     return descriptions.get(model, 'Standard quality')
 
 if __name__ == "__main__":
     print("Smart handler ready - Model selection based on user plan")
-    print("Free: tiny | Starter: base | Pro: small | Enterprise: medium")
+    print("Free: medium | Paid plans: large-v2 (GPU accelerated)")
     runpod.serverless.start({"handler": handler})
