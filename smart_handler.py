@@ -16,15 +16,16 @@ def handler(job):
     user_plan = job_input.get('userPlan', 'free')  # Get user plan from request
     
     # Select Whisper model based on plan
+    # Free plan gets medium quality (good accuracy)
+    # Paid plans get large-v2 on GPU (fastest + best quality)
     model_selection = {
-        'free': 'tiny',      # Fastest, least accurate (39MB)
-        'starter': 'base',   # Good balance (74MB)
-        'pro': 'small',      # Better quality (244MB)
-        'enterprise': 'medium'  # Best quality we can run fast (769MB)
-        # 'large' is 1550MB - too slow for real-time
+        'free': 'medium',        # Good quality for free users
+        'starter': 'large-v2',   # Best model, GPU accelerated
+        'pro': 'large-v2',       # Best model, GPU accelerated
+        'enterprise': 'large-v2' # Best model, GPU accelerated
     }
     
-    selected_model = model_selection.get(user_plan, 'tiny')
+    selected_model = model_selection.get(user_plan, 'medium')
     print(f"User plan: {user_plan}, Using model: {selected_model}")
     
     # Create temp directory
